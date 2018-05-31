@@ -1,14 +1,14 @@
 <template id="post-list">
-  <div class="row">
+  <div class="row">    
+    <add-post id="modal-data" v-if="modalVisibile"></add-post>
     <div class="pull-left">
       <input v-on:keyup="getPosts" type="text" class="form-control" name="search" 
           placeholder="Cari..." v-model="search"/>
     </div>
     <div class="pull-right">
-      <router-link class="btn btn-xs btn-primary" v-bind:to="{path: '/add-post'}">
-        <span class="glyphicon glyphicon-plus"></span>
-        Add new Post
-      </router-link>
+      <a href="javascript:" class="btn btn-block btn-success" @click="modalShow('modal-data')">
+          Add Post
+      </a>
     </br></br>
     </div>
     <table class="table">
@@ -48,7 +48,6 @@
 </template>
 
 
-
 <script>
 
 export default {
@@ -68,10 +67,13 @@ export default {
             to: 1,
             total: 0,
         },
-        offset: 4
+        offset: 4,
+        modalVisibile: false,
+        modalContent: ''
       }
   },
   created: function() {
+      this.modalVisibile = false;
       this.getPosts(this.posts.current_page);
   },
   methods: {
@@ -91,6 +93,19 @@ export default {
         .catch(() => {
             console.log('handle server error from here');
         });
+    },
+    modalShow: function (url) {
+        /*Axios.get(url).then((response) => {
+            this.modalContent = response.body;
+            this.modalVisibile = true;
+        }, (response) => {
+            this.modalContent = 'Error: Failed to load content';
+            this.modalVisibile = true;
+        });*/
+        this.modalVisibile = true;
+    },
+    modalHide: function(){
+        this.modalVisibile = false;
     }
   },  
   computed: {

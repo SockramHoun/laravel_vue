@@ -17,11 +17,12 @@ let AppLayout = require('./components/App.vue');
 //window.Pagination = require('laravel-vue-pagination');
 
 const Listposts = Vue.component('Listposts', require('./components/Listposts.vue'));
-const Addpost = Vue.component('Addpost', require('./components/Addpost.vue'));
+//const Addpost = Vue.component('Addpost', require('./components/Addpost.vue'));
 const Editpost = Vue.component('Editpost', require('./components/Editpost.vue'));
 const Deletepost = Vue.component('Deletepost', require('./components/Deletepost.vue'));
 const Viewpost = Vue.component('Viewpost', require('./components/Viewpost.vue'));
 Vue.component('vue-pagination', require('laravel-vue-pagination'));
+Vue.component('add-post', require('./components/Addpost.vue'));
 
 Vue.use(VueRouter, VueAxios, Axios);
 
@@ -29,11 +30,11 @@ const routes = [{
 		name: 'Listposts',
 		path: '/',
 		component: Listposts
-	},{
+	},/*{
 		name: 'Addpost',
 		path: '/add-post',
 		component: Addpost
-	},{
+	},*/{
 		name: 'Editpost',
 		path: '/edit/:id',
 		component: Editpost
